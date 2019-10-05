@@ -1,9 +1,40 @@
 'use strict';
 
-
 (function () {
-  var userDialog = document.querySelector('.setup');
-  var dialogHandler = userDialog.querySelector('.upload');
+  var setup = document.querySelector('.setup');
+  var setupOpen = document.querySelector('.setup-open');
+  var setupClose = document.querySelector('.setup-close');
+  var setupUsernameInput = setup.querySelector('.setup-user-name');
+  var dialogHandler = setup.querySelector('.upload');
+
+  var showSetup = function () {
+     setup.classList.remove('hidden');
+  };
+  var closeSetup = function () {
+     setup.classList.add('hidden');
+     setup.removeAttribute('style');
+  };
+
+  // открытие
+  setupOpen.addEventListener('click', function () {
+    setup.classList.remove('hidden');
+    document.addEventListener('keydown', function (evt) {
+      var currentEl = evt.target;
+      if ((evt.keyCode === window.util.ESC_KEYCODE && currentEl !== setupUsernameInput) || (evt.keyCode === window.util.ENTER_KEYCODE && currentEl === setupClose)) {
+        closeSetup()
+      }
+    });
+  });
+
+  setupClose.addEventListener('click', closeSetup);
+
+  setupOpen.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === window.util.ENTER_KEYCODE) {
+      showSetup();
+    }
+  });
+
+  // перетаскивание
   dialogHandler.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
     var startCoords = {
@@ -26,8 +57,8 @@
         x: moveEvt.clientX,
         y: moveEvt.clientY
       };
-      userDialog.style.top = (userDialog.offsetTop - shift.y) + 'px';
-      userDialog.style.left = (userDialog.offsetLeft - shift.x) + 'px';
+      setup.style.top = (setup.offsetTop - shift.y) + 'px';
+      setup.style.left = (setup.offsetLeft - shift.x) + 'px';
     };
     var onMouseUp = function (evtUp) {
       evtUp.preventDefault();
