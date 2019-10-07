@@ -8,11 +8,11 @@
   var dialogHandler = setup.querySelector('.upload');
 
   var showSetup = function () {
-     setup.classList.remove('hidden');
+    setup.classList.remove('hidden');
   };
   var closeSetup = function () {
-     setup.classList.add('hidden');
-     setup.removeAttribute('style');
+    setup.classList.add('hidden');
+    setup.removeAttribute('style');
   };
 
   // открытие
@@ -21,7 +21,7 @@
     document.addEventListener('keydown', function (evt) {
       var currentEl = evt.target;
       if ((evt.keyCode === window.util.ESC_KEYCODE && currentEl !== setupUsernameInput) || (evt.keyCode === window.util.ENTER_KEYCODE && currentEl === setupClose)) {
-        closeSetup()
+        closeSetup();
       }
     });
   });
