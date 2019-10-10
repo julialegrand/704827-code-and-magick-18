@@ -29,7 +29,7 @@
     userDialog.querySelector('.setup-similar').classList.remove('hidden');
   };
 
-  window.save('https://js.dump.academy/code-and-magick/data', 'GET', '', window.successHandler, window.errorHandler);
+  window.backend.save('https://js.dump.academy/code-and-magick/data', 'GET', '', window.successHandler, window.backend.errorHandler);
 
 })();
 
