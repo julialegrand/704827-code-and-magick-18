@@ -38,13 +38,14 @@
   };
 
   window.backend = {
-    xhrHandler: xhrHandler,
+    load: xhrHandler,
+    save: xhrHandler,
     errorHandler: errorHandler
   };
 
   form.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    window.backend.xhrHandler('https://js.dump.academy/code-and-magick', 'POST', new FormData(form), function () {
+    window.backend.save('https://js.dump.academy/code-and-magick', 'POST', new FormData(form), function () {
       userDialog.classList.add('hidden');
     }, window.backend.errorHandler);
   });
