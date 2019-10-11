@@ -37,17 +37,16 @@
     document.body.insertAdjacentElement('afterbegin', node);
   };
 
-  window.backend = {
-    load: xhrHandler,
-    save: xhrHandler,
-    errorHandler: errorHandler
-  };
-
   form.addEventListener('submit', function (evt) {
     evt.preventDefault();
     xhrHandler('https://js.dump.academy/code-and-magick', 'POST', new FormData(form), function () {
       userDialog.classList.add('hidden');
     }, errorHandler);
   });
+  window.backend = {
+    load: xhrHandler,
+    save: xhrHandler,
+    errorHandler: errorHandler
+  };
 
 })();
