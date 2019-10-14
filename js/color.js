@@ -12,6 +12,11 @@
   var coatHiddenInput = setupParent.querySelector('input[name="coat-color"]');
   var eyesHiddenInput = setupParent.querySelector('input[name="eyes-color" ]');
 
+  var wizard = {
+    onEyesChange: function (color) {},
+    onCoatChange: function (color) {}
+  };
+
   var arrayColor = [
     'rgb(101, 137, 164)',
     'rgb(241, 43, 107)',
@@ -28,6 +33,7 @@
     var colorRan = window.random(arrayColor.length - 1);
     el.style.fill = arrayColor[colorRan];
     coatHiddenInput.value = arrayColor[colorRan];
+    wizard.onCoatChange(arrayColor[colorRan]);
   });
 
   wizardEyes.addEventListener('click', function (evt) {
@@ -35,6 +41,7 @@
     var colorRan = window.random(arrayEyes.length - 1);
     el.style.fill = arrayEyes[colorRan];
     eyesHiddenInput.value = arrayEyes[colorRan];
+    wizard.onEyesChange(arrayEyes[colorRan]);
   });
 
   setupBall.addEventListener('click', function () {
@@ -42,4 +49,6 @@
     setupBall.style.background = arrayBall[colorRan];
     ballHiddenInput.value = arrayBall[colorRan];
   });
+
+  window.wizard = wizard;
 })();
