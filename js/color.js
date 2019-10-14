@@ -13,8 +13,8 @@
   var eyesHiddenInput = setupParent.querySelector('input[name="eyes-color" ]');
 
   var wizard = {
-    onEyesChange: function (color) {},
-    onCoatChange: function (color) {}
+    onEyesChange: function () {},
+    onCoatChange: function () {}
   };
 
   var arrayColor = [
