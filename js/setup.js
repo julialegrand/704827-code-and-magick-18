@@ -21,7 +21,10 @@
   var renderWizards = function (wizards) {
     var fragment = document.createDocumentFragment();
 
-    for (var i = 0; i < 4; i++) {
+    var takeNumber = wizards.length > 4 ? 4 : wizards.length;
+    similarListElement.innerHTML = '';
+
+    for (var i = 0; i < takeNumber; i++) {
       fragment.appendChild(renderWizard(wizards[i]));
     }
     similarListElement.appendChild(fragment);
@@ -29,7 +32,8 @@
     userDialog.querySelector('.setup-similar').classList.remove('hidden');
   };
 
-  window.backend.load('https://js.dump.academy/code-and-magick/data', 'GET', '', renderWizards, window.backend.errorHandler);
-
+  window.setup = {
+    renderWizards: renderWizards
+  };
 })();
 

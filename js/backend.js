@@ -6,7 +6,7 @@
   var CASE_200 = 200;
   var userDialog = document.querySelector('.setup');
   var form = userDialog.querySelector('.setup-wizard-form');
-  var xhrHandler = function (url, method, formData, onLoad, onError) {
+  var xhrHandler = function (url, method, onLoad, onError, formData) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
@@ -39,9 +39,9 @@
 
   form.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    xhrHandler('https://js.dump.academy/code-and-magick', 'POST', new FormData(form), function () {
+    xhrHandler('https://js.dump.academy/code-and-magick', 'POST', function () {
       userDialog.classList.add('hidden');
-    }, errorHandler);
+    }, errorHandler, new FormData(form));
   });
   window.backend = {
     load: xhrHandler,
